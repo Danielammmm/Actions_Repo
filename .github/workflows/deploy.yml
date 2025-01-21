@@ -1,0 +1,28 @@
+name: Deploy Application  # Nombre del flujo de trabajo 
+
+on:                       # Define los eventos que activan el flujo de trabajo
+  push:                   # Se activa cuando hay un push al repositorio
+    branches:             # Específicamente en las ramas definidas
+      - main              # En este caso, se activa solo en la rama 'main'
+
+jobs:                     # Define los trabajos que se ejecutarán en este flujo
+  deploy:                 # Nombre del trabajo
+    runs-on: ubuntu-latest # Indica que se ejecutará en una máquina virtual con Ubuntu como sistema operativo
+
+    steps:                # Lista de pasos que ejecutará este trabajo
+    - name: Checkout code  # Paso 1: Clona el repositorio en la máquina virtual
+      uses: actions/checkout@v3  # Utiliza la acción predefinida para hacer el checkout del código
+
+    - name: Set up Python  # Paso 2: Configura Python en la máquina virtual
+      uses: actions/setup-python@v4  # Utiliza la acción predefinida para instalar Python
+      with:                # Configuración adicional para la acción
+        python-version: 3.9 # Especifica la versión de Python que queremos usar
+
+    - name: Install dependencies # Paso 3: Instala las dependencias del proyecto
+      run: |                 # Ejecuta los siguientes comandos en la máquina virtual
+        python -m pip install --upgrade pip # Actualiza el gestor de paquetes pip
+        pip install -r requirements.txt     # Instala las dependencias listadas en requirements.txt
+
+    - name: Run Application  # Paso 4: Ejecuta la aplicación
+      run: |                 # Ejecuta los siguientes comandos en la máquina virtual
+        python run.py        # Inicia la aplicación ejecutando run.py
