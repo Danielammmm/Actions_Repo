@@ -23,6 +23,8 @@ jobs:                     # Define los trabajos que se ejecutarán en este flujo
         python -m pip install --upgrade pip # Actualiza el gestor de paquetes pip
         pip install -r requirements.txt     # Instala las dependencias listadas en requirements.txt
 
-    - name: Run Application  # Paso 4: Ejecuta la aplicación
-      run: |                 # Ejecuta los siguientes comandos en la máquina virtual
-        python run.py        # Inicia la aplicación ejecutando run.py
+    - name: Run Application
+      run: |
+        python run.py &
+        sleep 10
+        pkill -f run.py
