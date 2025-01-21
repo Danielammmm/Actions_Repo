@@ -1,0 +1,12 @@
+{
+    "top_contributors": [
+        {"name": "Alice", "commits": 50},
+        {"name": "Bob", "commits": 30},
+        {"name": "Charlie", "commits": 20}
+    ],
+    "languages": {
+        "Python": 70,
+        "JavaScript": 20,
+        "HTML": 10
+    }
+}
