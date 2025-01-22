@@ -3,7 +3,7 @@ from app.routes import handle_request
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        handle_request(self)
+        handle_request(self)ghj
 #este es un comentario
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
     server_address = ('', 5000)
