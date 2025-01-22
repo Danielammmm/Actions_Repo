@@ -4,7 +4,7 @@ from app.routes import handle_request
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         handle_request(self)
-
+#este es un comentario
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
     server_address = ('', 5000)
     httpd = server_class(server_address, handler_class)
