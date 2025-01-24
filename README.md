@@ -1,6 +1,6 @@
 # Github - Issues, actions, projects, security e insights
 
-[Investigación detallada](https://github.com/Danielammmm/Actions_Repo/blob/c0f2fa326b514fc1f16c168908454e9aedf52ea7/Investigaci%C3%B3n%20detallada/4%20-%20Github%20-%20Issues%2C%20actions%2C%20projects%2C%20security%20e%20insights.docx)
+[Descargar Investigación detallada](https://github.com/Danielammmm/Actions_Repo/blob/c0f2fa326b514fc1f16c168908454e9aedf52ea7/Investigaci%C3%B3n%20detallada/4%20-%20Github%20-%20Issues%2C%20actions%2C%20projects%2C%20security%20e%20insights.docx)
 
 **Ejemplos en el repositorio**
 ## Uso de Issues:
