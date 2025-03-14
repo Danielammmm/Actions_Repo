@@ -27,18 +27,77 @@
  
 4.	Crear Issue
 
-## Uso de Actions: 
-### ●	¿Para qué sirve? 
--	Integración continua (CI): compilar y probar automáticamente el código cuando se realizan cambios.
--	Despliegue continuo (CD): publicar automáticamente una aplicación en un servidor o servicio (como Azure, AWS, IIS, etc.).
--	Automatización de tareas: ejecutar scripts para tareas repetitivas, como limpieza de datos o actualización de documentación.
+## Uso de Actions
 
-### ●	Implementación y un ejemplo: 
-1.	Crear un archivo de workflow: Actions>Deploy Node.js to Azure Web app
- 
-2.	Realizar el workflow según se necesite 
- 
-3.	Realizar el commit
+#### ● ¿Para qué sirve?
+GitHub Actions es una herramienta poderosa para la automatización de flujos de trabajo en los repositorios de GitHub. Se puede utilizar para diversas tareas, incluyendo:
+
+- **Integración continua (CI):** Compilar y probar automáticamente el código cuando se realizan cambios en el repositorio, garantizando que el software sea estable.
+- **Despliegue continuo (CD):** Publicar automáticamente una aplicación en un servidor o servicio, como **Azure**, **AWS**, **IIS**, entre otros.
+- **Automatización de tareas:** Ejecutar scripts para tareas repetitivas, como limpieza de datos, generación de reportes, actualización de documentación y mantenimiento del repositorio.
+
+---
+
+#### ● Implementación y un ejemplo:
+Para configurar un flujo de trabajo en GitHub Actions, sigue estos pasos:
+
+1. **Crear un archivo de workflow**
+   - Ubícate en la carpeta `.github/workflows/` dentro del repositorio.
+   - Crea un archivo YAML con la configuración deseada (por ejemplo, `deploy-nodejs-azure.yml`).
+   
+2. **Ejemplo de workflow para desplegar una aplicación Node.js en Azure Web App:**
+
+   ```yaml
+   name: Deploy Node.js to Azure Web App
+
+   on:
+     push:
+       branches:
+         - main
+
+   jobs:
+     build-and-deploy:
+       runs-on: ubuntu-latest
+
+       steps:
+         - name: Checkout repository
+           uses: actions/checkout@v3
+
+         - name: Set up Node.js
+           uses: actions/setup-node@v3
+           with:
+             node-version: '16'
+
+         - name: Install dependencies
+           run: npm install
+
+         - name: Build project
+           run: npm run build
+
+         - name: Deploy to Azure Web App
+           uses: azure/webapps-deploy@v2
+           with:
+             app-name: "<nombre-de-tu-app>"
+             publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+             package: .
+   ```
+
+3. **Configurar secretos**
+   - En GitHub, ve a **Settings > Secrets and variables > Actions** y agrega el secreto `AZURE_WEBAPP_PUBLISH_PROFILE`, que se obtiene desde el portal de Azure.
+
+4. **Realizar el commit**
+   - Guarda y confirma el archivo del workflow en el repositorio.
+   - GitHub Actions ejecutará el flujo de trabajo automáticamente en cada `push` a la rama `main`.
+
+---
+
+### Consideraciones adicionales
+- Se pueden definir triggers adicionales, como `pull_request`, `schedule` (para ejecución periódica) o `workflow_dispatch` (ejecución manual).
+- GitHub Actions permite ejecutar tests antes del despliegue para asegurar la calidad del código.
+- Se pueden encadenar múltiples jobs para diferentes entornos (desarrollo, pruebas, producción).
+
+Este flujo de trabajo facilita la implementación de CI/CD, mejorando la eficiencia en el desarrollo y la entrega de software.
+
 
 ## Projects: 
 ### ●	¿Para qué sirve? 
